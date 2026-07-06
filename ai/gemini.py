@@ -1,9 +1,11 @@
 import streamlit as st
-from google import genai
+import google.generativeai as genai
 
 API_KEY = st.secrets["GEMINI_API_KEY"]
 
-client = genai.Client(api_key=API_KEY)
+genai.configure(api_key=API_KEY)
+
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 def ask_gemini(question, df):
 
@@ -22,9 +24,5 @@ Give:
 - Recommendations
 """
 
-    response = client.models.generate_content(
-        model="gemini-1.5-pro",
-        contents=prompt
-    )
-
+    response = model.generate_content(prompt)
     return response.text
