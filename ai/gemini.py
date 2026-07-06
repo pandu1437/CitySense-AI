@@ -5,12 +5,12 @@ API_KEY = st.secrets["GEMINI_API_KEY"]
 
 genai.configure(api_key=API_KEY)
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-1.5-pro")
 
 def ask_gemini(question, df):
 
     prompt = f"""
-You are a Senior Data Analyst AI.
+You are a senior data analyst.
 
 Dataset:
 {df.head(50).to_string()}
@@ -20,8 +20,8 @@ Question:
 
 Give:
 - Summary
-- Key insights
-- Recommendations
+- Insights
+- Recommendation
 """
 
     response = model.generate_content(prompt)
