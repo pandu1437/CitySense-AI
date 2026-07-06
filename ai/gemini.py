@@ -5,7 +5,7 @@ API_KEY = st.secrets["GEMINI_API_KEY"]
 
 genai.configure(api_key=API_KEY)
 
-model = genai.GenerativeModel("gemini-1.5-pro")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 def ask_gemini(question, df):
 
@@ -20,7 +20,7 @@ Question:
 
 Give:
 - Summary
-- Insights
+- Key insights
 - Recommendation
 """
 
