@@ -24,19 +24,31 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+/* Main background */
 .main {
-    background-color:#F8FAFC;
+    background-color: #F8FAFC;
 }
 
+/* Sidebar */
+section[data-testid="stSidebar"]{
+    background-color:#1E3A8A;
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] *{
+    color:white !important;
+}
+
+/* Main headings */
 h1{
     color:#1E3A8A;
-    font-weight:700;
 }
 
 h2,h3{
     color:#2563EB;
 }
 
+/* Metric cards */
 div[data-testid="metric-container"]{
     background:white;
     border-radius:12px;
@@ -44,23 +56,12 @@ div[data-testid="metric-container"]{
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
+/* Buttons */
 .stButton>button{
-    width:100%;
     background:#2563EB;
     color:white;
-    border:none;
     border-radius:10px;
-    padding:10px;
-    font-weight:bold;
-}
-
-.stButton>button:hover{
-    background:#1E40AF;
-    color:white;
-}
-
-section[data-testid="stSidebar"]{
-    background:#F1F5F9;
+    width:100%;
 }
 
 </style>
