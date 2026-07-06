@@ -17,6 +17,54 @@ st.set_page_config(
     page_icon="🌍",
     layout="wide"
 )
+# ======================================================
+# CUSTOM CSS
+# ======================================================
+
+st.markdown("""
+<style>
+
+.main {
+    background-color:#F8FAFC;
+}
+
+h1{
+    color:#1E3A8A;
+    font-weight:700;
+}
+
+h2,h3{
+    color:#2563EB;
+}
+
+div[data-testid="metric-container"]{
+    background:white;
+    border-radius:12px;
+    padding:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.stButton>button{
+    width:100%;
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px;
+    font-weight:bold;
+}
+
+.stButton>button:hover{
+    background:#1E40AF;
+    color:white;
+}
+
+section[data-testid="stSidebar"]{
+    background:#F1F5F9;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ======================================================
 # SESSION STATE
@@ -30,6 +78,12 @@ if "df" not in st.session_state:
 # ======================================================
 
 st.sidebar.title("🌍 CitySense AI")
+
+st.sidebar.caption(
+    "AI-Powered Decision Intelligence Platform"
+)
+
+st.sidebar.markdown("---")
 
 page = st.sidebar.radio(
     "Navigation",
