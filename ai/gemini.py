@@ -1,31 +1,45 @@
-import os
-from dotenv import load_dotenv
-from google import genai
-
 import streamlit as st
+import google.generativeai as genai
 
-API_KEY = st.secrets["GEMINI_API_KEY"]
+# ----------------------------
+# SAFE API KEY LOADING
+# ----------------------------
+API_KEY = st.secrets.get("GEMINI_API_KEY", None)
 
-print("=" * 50)
-print("Gemini.py Loaded")
-print("API Key Found:", API_KEY is not None)
+if not API_KEY:
+    raise ValueError("GEMINI_API_KEY not found in Streamlit secrets")
 
-client = genai.Client(api_key=API_KEY)
+genai.configure(api_key=API_KEY)
 
+# ----------------------------
+# USE WORKING MODEL
+# ----------------------------
+model = genai.GenerativeModel("gemini-1.5-pro ✅")
 
+# ----------------------------
+# MAIN FUNCTION
+# ----------------------------
 def ask_gemini(question, df):
 
     prompt = f"""
-Dataset Columns:
-{list(df.columns)}
+You are a Senior Data Analyst AI.
+
+Analyze the dataset and give structured insights.
+
+Dataset (sample):
+{df.head(50).to_string()}
 
 Question:
 {question}
+
+Respond in:
+- Short answer
+- Key insights
+- Recommendation
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
-
-    return response.text
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error from Gemini: {str(e)}"
