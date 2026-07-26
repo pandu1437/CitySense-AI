@@ -711,137 +711,249 @@ elif page == "📂 Upload Dataset":
 # DASHBOARD
 # ======================================================
 
+# ======================================================
+# DASHBOARD
+# ======================================================
+
 elif page == "📊 Dashboard":
 
-    st.title("📊 Interactive Dashboard")
+    st.title("📊 Intelligent Analytics Dashboard")
+
 
     df = st.session_state.df
 
+
     if df is None:
 
-        st.warning("⚠️ Please upload a dataset first.")
+        st.warning(
+            "⚠️ Please upload a dataset first."
+        )
 
         st.stop()
 
-    st.success("✅ Dataset Loaded Successfully")
+
+
+    st.success(
+        "✅ Dataset Loaded Successfully"
+    )
+
 
     st.markdown("---")
+
 
     # ======================================================
     # KPI CARDS
     # ======================================================
 
-    st.subheader("📌 Dataset Overview")
+    st.subheader("📌 Dataset Intelligence")
 
-    col1, col2, col3, col4 = st.columns(4)
 
-    col1.metric(
-        "Rows",
-        df.shape[0]
-    )
+    col1,col2,col3,col4 = st.columns(4)
 
-    col2.metric(
-        "Columns",
-        df.shape[1]
-    )
 
-    col3.metric(
-        "Missing Values",
-        int(df.isnull().sum().sum())
-    )
+    with col1:
 
-    col4.metric(
-        "Duplicate Rows",
-        int(df.duplicated().sum())
-    )
+        st.metric(
+            "📄 Total Records",
+            df.shape[0]
+        )
+
+
+    with col2:
+
+        st.metric(
+            "📊 Features",
+            df.shape[1]
+        )
+
+
+    with col3:
+
+        st.metric(
+            "❗ Missing Values",
+            int(df.isnull().sum().sum())
+        )
+
+
+    with col4:
+
+        st.metric(
+            "🔁 Duplicate Rows",
+            int(df.duplicated().sum())
+        )
+
+
 
     st.markdown("---")
 
-    # ======================================================
-    # COLUMN SELECTION
-    # ======================================================
 
-    numeric_cols = df.select_dtypes(include="number").columns.tolist()
-
-    categorical_cols = df.select_dtypes(
-        exclude="number"
-    ).columns.tolist()
 
     # ======================================================
     # DATA PREVIEW
     # ======================================================
 
-    st.subheader("📋 Dataset Preview")
+
+    st.subheader(
+        "📋 Dataset Preview"
+    )
+
 
     st.dataframe(
-        df.head(20),
+        df.head(10),
         use_container_width=True
     )
 
-    st.markdown("---")
 
-    # ======================================================
-    # SHOW PROFESSIONAL DASHBOARD
-    # ======================================================
-
-    show_dashboard(df)
 
     st.markdown("---")
 
+
+
     # ======================================================
-    # NUMERIC SUMMARY
+    # AUTOMATIC DASHBOARD
     # ======================================================
+
+
+    st.subheader(
+        "📈 AI Generated Visual Analytics"
+    )
+
+
+    try:
+
+        show_dashboard(df)
+
+
+    except Exception as e:
+
+        st.error(
+            f"Dashboard generation error: {e}"
+        )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # NUMERIC INSIGHTS
+    # ======================================================
+
+
+    numeric_cols = df.select_dtypes(
+        include="number"
+    ).columns.tolist()
+
+
 
     if len(numeric_cols) > 0:
 
-        st.subheader("📈 Statistical Summary")
 
-        st.dataframe(
-            df[numeric_cols].describe(),
-            use_container_width=True
+        st.subheader(
+            "📊 Numerical Analysis"
         )
 
-    # ======================================================
-    # MISSING VALUES
-    # ======================================================
 
-    st.subheader("❗ Missing Values")
-
-    missing = pd.DataFrame({
-
-        "Column": df.columns,
-
-        "Missing Values": df.isnull().sum(),
-
-        "Percentage":
-
-        round(
-            (df.isnull().sum()/len(df))*100,
-            2
+        selected_column = st.selectbox(
+            "Select column for analysis",
+            numeric_cols
         )
 
-    })
 
-    st.dataframe(
-        missing,
-        use_container_width=True
-    )
+        col1,col2 = st.columns(2)
+
+
+
+        with col1:
+
+            st.metric(
+                "Average",
+                round(
+                    df[selected_column].mean(),
+                    2
+                )
+            )
+
+
+        with col2:
+
+            st.metric(
+                "Maximum",
+                round(
+                    df[selected_column].max(),
+                    2
+                )
+            )
+
+
+
+        st.line_chart(
+            df[selected_column]
+        )
+
+
 
     st.markdown("---")
 
+
+
     # ======================================================
-    # DOWNLOAD DATASET
+    # MISSING VALUE ANALYSIS
     # ======================================================
 
-    csv = df.to_csv(index=False).encode("utf-8")
+
+    st.subheader(
+        "🔍 Data Quality Report"
+    )
+
+
+    quality = pd.DataFrame({
+
+        "Column":
+        df.columns,
+
+        "Missing":
+        df.isnull().sum(),
+
+        "Unique Values":
+        df.nunique(),
+
+        "Data Type":
+        df.dtypes.astype(str)
+
+    })
+
+
+    st.dataframe(
+        quality,
+        use_container_width=True
+    )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # DOWNLOAD
+    # ======================================================
+
+
+    csv = df.to_csv(
+        index=False
+    ).encode("utf-8")
+
+
 
     st.download_button(
 
-        "📥 Download Current Dataset",
+        "📥 Export Dashboard Dataset",
 
         csv,
 
-        file_name="processed_dataset.csv",
+        file_name="CitySense_dashboard_data.csv",
 
         mime="text/csv"
 
