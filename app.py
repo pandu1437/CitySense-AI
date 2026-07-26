@@ -962,107 +962,222 @@ elif page == "📊 Dashboard":
 # AI ASSISTANT
 # ======================================================
 
+# ======================================================
+# AI ASSISTANT
+# ======================================================
+
 elif page == "🤖 AI Assistant":
 
-    st.title("🤖 AI Data Analyst")
+    st.title("🤖 CitySense AI Analyst")
+
 
     df = st.session_state.df
 
+
     if df is None:
 
-        st.warning("⚠️ Please upload a dataset first.")
+        st.warning(
+            "⚠️ Please upload a dataset first."
+        )
 
         st.stop()
 
-    st.write(
-        "Ask questions about your uploaded dataset using Gemini AI."
+
+
+    st.markdown(
+    """
+    Ask questions about your dataset and get
+    AI-powered insights, recommendations and explanations
+    using Google Gemini.
+    """
     )
 
-    st.markdown("---")
-
-    # Suggested Questions
-
-    st.subheader("💡 Suggested Questions")
-
-    st.info("""
-• Summarize this dataset
-
-• Which column has the highest average?
-
-• Detect unusual patterns.
-
-• Which category occurs most frequently?
-
-• What business insights can you provide?
-
-• Recommend actions based on this dataset.
-
-• Predict possible future trends.
-
-• Explain the important columns.
-
-• Which features are most important?
-
-• Give executive level insights.
-""")
 
     st.markdown("---")
 
-    question = st.text_area(
 
-        "Ask your question",
+    # ======================================================
+    # DATASET SUMMARY CARD
+    # ======================================================
 
-        height=120,
 
-        placeholder="Example: Which city has the highest average AQI?"
-
+    st.subheader(
+        "📊 Current Dataset"
     )
 
-    if st.button("🚀 Generate AI Insight"):
 
-        if question.strip() == "":
+    col1,col2,col3 = st.columns(3)
 
-            st.warning("Please enter a question.")
-
-        else:
-
-            with st.spinner("Gemini is analyzing your dataset..."):
-
-                try:
-
-                    answer = ask_gemini(question, df)
-
-                    st.success("Analysis Complete")
-
-                    st.markdown(answer)
-
-                except Exception as e:
-
-                    st.error(f"Error: {e}")
-
-    st.markdown("---")
-
-    st.subheader("📄 Dataset Information")
-
-    col1, col2 = st.columns(2)
 
     with col1:
 
-        st.metric("Rows", df.shape[0])
+        st.metric(
+            "Rows",
+            df.shape[0]
+        )
 
-        st.metric("Columns", df.shape[1])
 
     with col2:
+
+        st.metric(
+            "Columns",
+            df.shape[1]
+        )
+
+
+    with col3:
 
         st.metric(
             "Missing Values",
             int(df.isnull().sum().sum())
         )
 
-        st.metric(
-            "Duplicate Rows",
-            int(df.duplicated().sum())
-        )
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # AI SUGGESTIONS
+    # ======================================================
+
+
+    st.subheader(
+        "💡 Try Asking"
+    )
+
+
+    suggestions = [
+
+        "Summarize this dataset",
+
+        "Find important trends",
+
+        "Detect unusual patterns",
+
+        "Give business recommendations",
+
+        "Explain important columns",
+
+        "Predict future trends"
+
+    ]
+
+
+    cols = st.columns(3)
+
+
+    for i, suggestion in enumerate(suggestions):
+
+        with cols[i % 3]:
+
+            st.info(
+                suggestion
+            )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # USER QUERY
+    # ======================================================
+
+
+    question = st.text_area(
+
+        "💬 Ask your AI Data Analyst",
+
+        placeholder=
+        "Example: Which city has the highest AQI level?",
+
+        height=120
+
+    )
+
+
+
+    if st.button(
+        "🚀 Generate AI Insight"
+    ):
+
+
+        if question.strip() == "":
+
+
+            st.warning(
+                "Please enter a question."
+            )
+
+
+        else:
+
+
+            with st.spinner(
+                "🤖 Gemini is analyzing your dataset..."
+            ):
+
+
+                try:
+
+
+                    answer = ask_gemini(
+                        question,
+                        df
+                    )
+
+
+                    st.markdown("---")
+
+
+                    st.subheader(
+                        "🧠 AI Response"
+                    )
+
+
+                    st.success(
+                        "Analysis Completed"
+                    )
+
+
+                    st.write(
+                        answer
+                    )
+
+
+
+                except Exception as e:
+
+
+                    st.error(
+                        f"AI Error: {e}"
+                    )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # DATA SAMPLE
+    # ======================================================
+
+
+    st.subheader(
+        "📋 Dataset Sample"
+    )
+
+
+    st.dataframe(
+
+        df.head(10),
+
+        use_container_width=True
+
+    )
         # ======================================================
 # FORECAST
 # ======================================================
