@@ -483,7 +483,7 @@ http://localhost:8501
 
 ## 🤖 AI Assistant
 
-<img src="ai_assistnat.png.png" width="900">
+<img src="ai assistnat.png.png" width="900">
 # 🌍 Real-World Applications
 
 
