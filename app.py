@@ -717,9 +717,20 @@ elif page == "📂 Upload Dataset":
 
 elif page == "📊 Dashboard":
 
-    st.title(" AI Analytics Command Center
+    st.title("📊 AI Analytics Command Center")
 
-              Transforming raw city data into actionable intelligence")
+st.markdown(
+    """
+    <p style="
+    font-size:18px;
+    color:#64748b;
+    ">
+    Transforming raw city data into actionable intelligence
+    using AI-powered analytics, forecasting and decision intelligence.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 
     df = st.session_state.df
