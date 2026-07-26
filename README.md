@@ -472,7 +472,7 @@ http://localhost:8501
 Add screenshot:
 
 ```
-assets/home.png
+home.png
 ```
 
 
@@ -481,7 +481,7 @@ assets/home.png
 Add screenshot:
 
 ```
-assets/dashboard.png
+ai.png
 ```
 
 
@@ -490,7 +490,7 @@ assets/dashboard.png
 Add screenshot:
 
 ```
-assets/ai_assistant.png
+ai_assistnat.png
 ```
 
 
