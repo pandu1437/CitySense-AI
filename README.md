@@ -469,21 +469,21 @@ http://localhost:8501
 
 ## 🏠 Home Page
 
-<img src="home.png" width="900">
+<img src="home.png.png" width="900">
 
 
 ---
 
 ## 📊 Analytics Dashboard
 
-<img src="ai.png" width="900">
+<img src="ai.png.png" width="900">
 
 
 ---
 
 ## 🤖 AI Assistant
 
-<img src="ai_assistant.png" width="900">
+<img src="ai_assistnat.png.png" width="900">
 # 🌍 Real-World Applications
 
 
