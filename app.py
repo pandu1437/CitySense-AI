@@ -513,26 +513,7 @@ if page == "🏠 Home":
 
     # HERO SECTION
 
-    st.markdown("""
-    <div class="hero">
-
-        <h1>🌍 CitySense AI</h1>
-
-        <h3>
-        Transform Raw Data Into Intelligent Decisions
-        </h3>
-
-
-        <p>
-        An AI-powered decision intelligence platform that converts
-        raw datasets into actionable insights using automated analytics,
-        predictive AI, and Google Gemini intelligence.
-        </p>
-
-    </div>
-
-    """, unsafe_allow_html=True)
-
+   
 
 
     # PRODUCT METRICS
