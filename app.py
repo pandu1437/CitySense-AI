@@ -510,24 +510,36 @@ if page == "🏠 Home":
 # UPLOAD DATASET
 # ======================================================
 
+# ======================================================
+# UPLOAD DATASET
+# ======================================================
+
 elif page == "📂 Upload Dataset":
 
     st.title("📂 Upload Dataset")
 
-    st.write(
-        "Upload any CSV or Excel dataset for automatic analysis."
+    st.markdown(
+    """
+    Upload your CSV or Excel dataset and let CitySense AI
+    automatically clean, analyze and prepare your data.
+    """
     )
 
+
+    st.markdown("---")
+
+
     uploaded_file = st.file_uploader(
-        "Choose a CSV or Excel file",
-        type=["csv", "xlsx", "xls"]
+        "📁 Choose CSV or Excel file",
+        type=["csv","xlsx","xls"]
     )
+
 
     if uploaded_file is not None:
 
         try:
 
-            # Read Dataset
+            # Read File
 
             if uploaded_file.name.endswith(".csv"):
 
@@ -537,105 +549,164 @@ elif page == "📂 Upload Dataset":
 
                 df = pd.read_excel(uploaded_file)
 
-            # Clean Dataset
 
-            df = clean_data(df)
+            # Cleaning
 
-            # Save Dataset
+            with st.spinner("🤖 AI is cleaning your dataset..."):
+
+                df = clean_data(df)
+
 
             st.session_state.df = df
 
-            st.success("✅ Dataset Uploaded Successfully!")
 
-            st.info(f"Current File: {uploaded_file.name}")
+            st.success(
+                "✅ Dataset uploaded and cleaned successfully!"
+            )
+
+
+            st.info(
+                f"📄 File Name : {uploaded_file.name}"
+            )
+
 
             st.markdown("---")
 
-            # Dataset Metrics
 
-            st.subheader("📊 Dataset Summary")
+            # ================================
+            # DATASET METRICS
+            # ================================
 
-            col1, col2, col3, col4 = st.columns(4)
+            st.subheader("📊 Dataset Overview")
 
-            col1.metric("Rows", df.shape[0])
 
-            col2.metric("Columns", df.shape[1])
+            col1,col2,col3,col4 = st.columns(4)
+
+
+            col1.metric(
+                "Rows",
+                df.shape[0]
+            )
+
+
+            col2.metric(
+                "Columns",
+                df.shape[1]
+            )
+
 
             col3.metric(
                 "Missing Values",
                 int(df.isnull().sum().sum())
             )
 
+
             col4.metric(
                 "Duplicate Rows",
                 int(df.duplicated().sum())
             )
 
+
             st.markdown("---")
 
-            # Preview
+
+            # ================================
+            # PREVIEW
+            # ================================
 
             st.subheader("📋 Dataset Preview")
+
 
             st.dataframe(
                 df.head(20),
                 use_container_width=True
             )
 
+
             st.markdown("---")
 
-            # Column Information
+
+            # ================================
+            # COLUMN DETAILS
+            # ================================
 
             st.subheader("📑 Column Information")
 
-            info = pd.DataFrame({
 
-                "Column": df.columns,
+            column_info = pd.DataFrame({
+
+                "Column Name": df.columns,
 
                 "Data Type": df.dtypes.astype(str),
 
-                "Missing Values": df.isnull().sum().values,
+                "Missing Values":
+                df.isnull().sum().values,
 
-                "Unique Values": df.nunique().values
+                "Unique Values":
+                df.nunique().values
 
             })
 
+
             st.dataframe(
-                info,
+                column_info,
                 use_container_width=True
             )
 
+
             st.markdown("---")
 
-            # Statistical Summary
+
+            # ================================
+            # STATISTICS
+            # ================================
 
             st.subheader("📈 Statistical Summary")
+
 
             st.dataframe(
                 df.describe(include="all").fillna(""),
                 use_container_width=True
             )
 
+
             st.markdown("---")
 
-            # Download Clean Dataset
 
-            csv = df.to_csv(index=False).encode("utf-8")
+            # ================================
+            # DOWNLOAD
+            # ================================
+
+            csv = df.to_csv(
+                index=False
+            ).encode("utf-8")
+
 
             st.download_button(
+
                 "📥 Download Clean Dataset",
+
                 csv,
-                file_name="clean_dataset.csv",
+
+                file_name="CitySense_clean_dataset.csv",
+
                 mime="text/csv"
+
             )
+
 
         except Exception as e:
 
-            st.error(f"❌ Error: {e}")
+            st.error(
+                f"❌ Error processing dataset: {e}"
+            )
+
 
     else:
 
-        st.info("👆 Upload a CSV or Excel dataset to begin.")
+        st.info(
+            "👆 Upload a CSV or Excel file to start AI-powered analysis."
+        )
         # ======================================================
 # DASHBOARD
 # ======================================================
