@@ -719,7 +719,7 @@ elif page == "📊 Dashboard":
 
     st.title("📊 AI Analytics Command Center")
 
-st.markdown(
+    st.markdown(
     """
     <p style="
     font-size:18px;
@@ -729,9 +729,7 @@ st.markdown(
     using AI-powered analytics, forecasting and decision intelligence.
     </p>
     """,
-    unsafe_allow_html=True
-)
-
+    unsafe_allow_html=True)
 
     df = st.session_state.df
 
