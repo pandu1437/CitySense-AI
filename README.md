@@ -469,33 +469,21 @@ http://localhost:8501
 
 ## 🏠 Home Page
 
-Add screenshot:
-
-```
-home.png
-```
-
-
-## 📊 Analytics Dashboard
-
-Add screenshot:
-
-```
-ai.png
-```
-
-
-## 🤖 AI Assistant
-
-Add screenshot:
-
-```
-ai_assistnat.png
-```
+<img src="home.png" width="900">
 
 
 ---
 
+## 📊 Analytics Dashboard
+
+<img src="ai.png" width="900">
+
+
+---
+
+## 🤖 AI Assistant
+
+<img src="ai_assistant.png" width="900">
 # 🌍 Real-World Applications
 
 
