@@ -1182,74 +1182,271 @@ elif page == "🤖 AI Assistant":
 # FORECAST
 # ======================================================
 
+# ======================================================
+# FORECAST
+# ======================================================
+
 elif page == "📈 Forecast":
 
-    st.title("📈 Data Forecasting")
+    st.title("📈 Predictive AI Forecasting")
+
 
     df = st.session_state.df
 
+
     if df is None:
 
-        st.warning("⚠️ Please upload a dataset first.")
+        st.warning(
+            "⚠️ Please upload a dataset first."
+        )
 
         st.stop()
 
-    numeric_cols = df.select_dtypes(include="number").columns.tolist()
 
-    if len(numeric_cols) == 0:
 
-        st.warning("No numeric columns available for forecasting.")
-
-        st.stop()
-
-    st.subheader("Select Column for Forecasting")
-
-    target = st.selectbox(
-        "Numeric Column",
-        numeric_cols,
-        key="forecast_column"
+    st.markdown(
+    """
+    Use machine learning techniques to forecast future
+    trends and understand possible upcoming patterns.
+    """
     )
+
 
     st.markdown("---")
 
-    forecast_days = st.slider(
-        "Forecast Future Points",
-        min_value=5,
-        max_value=50,
-        value=15
+
+
+    # ======================================================
+    # SELECT COLUMN
+    # ======================================================
+
+
+    numeric_cols = df.select_dtypes(
+        include="number"
+    ).columns.tolist()
+
+
+
+    if len(numeric_cols) == 0:
+
+        st.warning(
+            "No numerical columns available for forecasting."
+        )
+
+        st.stop()
+
+
+
+    st.subheader(
+        "🎯 Select Forecast Target"
     )
 
-    try:
 
-        future = forecast_aqi(
-            df,
-            target,
-            forecast_days
+    target = st.selectbox(
+
+        "Choose numerical column",
+
+        numeric_cols
+
+    )
+
+
+
+    forecast_points = st.slider(
+
+        "🔮 Future Prediction Points",
+
+        min_value=5,
+
+        max_value=50,
+
+        value=15
+
+    )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # CURRENT DATA INSIGHTS
+    # ======================================================
+
+
+    st.subheader(
+        "📊 Current Data Overview"
+    )
+
+
+    col1,col2,col3 = st.columns(3)
+
+
+
+    with col1:
+
+        st.metric(
+
+            "Average",
+
+            round(
+                df[target].mean(),
+                2
+            )
+
         )
 
-        st.success("Forecast Generated Successfully")
 
-        st.dataframe(
-            future,
-            use_container_width=True
+
+    with col2:
+
+        st.metric(
+
+            "Maximum",
+
+            round(
+                df[target].max(),
+                2
+            )
+
         )
 
-        st.line_chart(
-            future.set_index("Day")
+
+
+    with col3:
+
+        st.metric(
+
+            "Minimum",
+
+            round(
+                df[target].min(),
+                2
+            )
+
         )
 
-        csv = future.to_csv(index=False).encode("utf-8")
 
-        st.download_button(
-            "📥 Download Forecast",
-            csv,
-            file_name="forecast.csv",
-            mime="text/csv"
-        )
 
-    except Exception as e:
+    st.markdown("---")
 
-        st.error(e)
+
+
+    # ======================================================
+    # FORECAST GENERATION
+    # ======================================================
+
+
+    if st.button(
+        "🚀 Generate Forecast"
+    ):
+
+
+        with st.spinner(
+            "🤖 AI model is predicting future trends..."
+        ):
+
+
+            try:
+
+
+                future = forecast_aqi(
+
+                    df,
+
+                    target,
+
+                    forecast_points
+
+                )
+
+
+                st.success(
+                    "✅ Forecast Generated Successfully"
+                )
+
+
+                st.markdown("---")
+
+
+
+                # Forecast Table
+
+
+                st.subheader(
+                    "📋 Prediction Results"
+                )
+
+
+                st.dataframe(
+
+                    future,
+
+                    use_container_width=True
+
+                )
+
+
+
+                st.markdown("---")
+
+
+
+                # Chart
+
+
+                st.subheader(
+                    "📈 Forecast Visualization"
+                )
+
+
+                st.line_chart(
+
+                    future.set_index(
+                        "Day"
+                    )
+
+                )
+
+
+
+                st.markdown("---")
+
+
+
+                # Download
+
+
+                csv = future.to_csv(
+                    index=False
+                ).encode(
+                    "utf-8"
+                )
+
+
+                st.download_button(
+
+                    "📥 Download Forecast Report",
+
+                    csv,
+
+                    file_name=
+                    "CitySense_forecast_report.csv",
+
+                    mime=
+                    "text/csv"
+
+                )
+
+
+
+            except Exception as e:
+
+
+                st.error(
+                    f"Forecast Error: {e}"
+                )
         # ======================================================
 # ANOMALY DETECTION
 # ======================================================
