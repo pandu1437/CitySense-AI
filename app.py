@@ -288,77 +288,93 @@ page = st.sidebar.radio(
 # ======================================================
 
 
+# ======================================================
+# HOME
+# ======================================================
+
 if page == "🏠 Home":
 
 
+    # ================================
     # HERO SECTION
- st.markdown(
-"""
-<div class="hero">
+    # ================================
 
-<h1>🌍 CitySense AI</h1>
+    st.markdown(
+    """
+    <div class="hero">
 
-<h3>
-Transform Raw Data Into Intelligent Decisions
-</h3>
+    <h1>🌍 CitySense AI</h1>
 
-<p>
-An AI-powered decision intelligence platform that converts
-raw datasets into actionable insights using automated analytics,
-predictive AI, and Google Gemini intelligence.
-</p>
+    <h3>
+    Transform Raw Data Into Intelligent Decisions
+    </h3>
 
-</div>
-""",
-unsafe_allow_html=True
-)  
+    <p>
+    An AI-powered decision intelligence platform that converts
+    raw datasets into actionable insights using automated analytics,
+    predictive AI, and Google Gemini intelligence.
+    </p>
 
-col1,col2,col3,col4 = st.columns(4)
-col1.metric(
-        "📊 Analytics",
-        "Automated"
+    </div>
+    """,
+    unsafe_allow_html=True
     )
 
 
-    col2.metric(
-        "🤖 AI Engine",
-        "Gemini"
-    )
+    # ================================
+    # METRICS
+    # ================================
+
+    col1, col2, col3, col4 = st.columns(4)
 
 
-    col3.metric(
-        "📁 Data Support",
-        "CSV + Excel"
-    )
+    with col1:
+        st.metric(
+            "📊 Analytics",
+            "Automated"
+        )
 
 
-    col4.metric(
-        "⚡ Processing",
-        "Instant"
-    )
+    with col2:
+        st.metric(
+            "🤖 AI Engine",
+            "Gemini"
+        )
 
+
+    with col3:
+        st.metric(
+            "📁 Data Support",
+            "CSV + Excel"
+        )
+
+
+    with col4:
+        st.metric(
+            "⚡ Processing",
+            "Instant"
+        )
 
 
     st.markdown("---")
 
 
-
+    # ================================
     # FEATURES
-
+    # ================================
 
     st.markdown(
         "## 🚀 Powerful AI Capabilities"
     )
 
 
-
-    col1,col2,col3 = st.columns(3)
-
+    col1, col2, col3 = st.columns(3)
 
 
     with col1:
 
-        st.markdown("""
+        st.markdown(
+        """
         <div class="feature-card">
 
         <h3>📊 Smart Analytics</h3>
@@ -369,14 +385,15 @@ col1.metric(
         </p>
 
         </div>
-        """,unsafe_allow_html=True)
-
-
+        """,
+        unsafe_allow_html=True
+        )
 
 
     with col2:
 
-        st.markdown("""
+        st.markdown(
+        """
         <div class="feature-card">
 
         <h3>🤖 AI Intelligence</h3>
@@ -387,14 +404,15 @@ col1.metric(
         </p>
 
         </div>
-        """,unsafe_allow_html=True)
-
-
+        """,
+        unsafe_allow_html=True
+        )
 
 
     with col3:
 
-        st.markdown("""
+        st.markdown(
+        """
         <div class="feature-card">
 
         <h3>🔮 Predictive AI</h3>
@@ -405,30 +423,30 @@ col1.metric(
         </p>
 
         </div>
-        """,unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True
+        )
 
 
     st.markdown("---")
 
 
-
+    # ================================
     # HOW IT WORKS
-
+    # ================================
 
     st.markdown(
         "## ✨ How CitySense AI Works"
     )
 
 
-
-    col1,col2,col3 = st.columns(3)
-
+    col1, col2, col3 = st.columns(3)
 
 
     with col1:
 
-        st.markdown("""
+        st.markdown(
+        """
         <div class="step-card">
 
         <h3>1️⃣ Upload Dataset</h3>
@@ -438,13 +456,15 @@ col1.metric(
         </p>
 
         </div>
-        """,unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True
+        )
 
 
     with col2:
 
-        st.markdown("""
+        st.markdown(
+        """
         <div class="step-card">
 
         <h3>2️⃣ AI Analysis</h3>
@@ -455,13 +475,15 @@ col1.metric(
         </p>
 
         </div>
-        """,unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True
+        )
 
 
     with col3:
 
-        st.markdown("""
+        st.markdown(
+        """
         <div class="step-card">
 
         <h3>3️⃣ Intelligent Decisions</h3>
@@ -472,8 +494,9 @@ col1.metric(
         </p>
 
         </div>
-        """,unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True
+        )
 
 
     st.markdown("---")
@@ -483,7 +506,6 @@ col1.metric(
         "🚀 Ready to unlock intelligence from your data? "
         "Use the sidebar to upload your dataset and start analysis."
     )
-
     # ======================================================
 # UPLOAD DATASET
 # ======================================================
