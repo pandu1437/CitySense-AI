@@ -1451,71 +1451,297 @@ elif page == "📈 Forecast":
 # ANOMALY DETECTION
 # ======================================================
 
+# ======================================================
+# ANOMALY DETECTION
+# ======================================================
+
 elif page == "🚨 Anomaly Detection":
 
-    st.title("🚨 Anomaly Detection")
+    st.title("🚨 AI Anomaly Detection")
+
 
     df = st.session_state.df
 
+
     if df is None:
 
-        st.warning("Please upload a dataset first.")
+        st.warning(
+            "⚠️ Please upload a dataset first."
+        )
 
         st.stop()
 
-    numeric_cols = df.select_dtypes(include="number").columns.tolist()
+
+
+    st.markdown(
+    """
+    Detect unusual patterns, abnormal values and
+    potential risks in your dataset using machine learning.
+    """
+    )
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # COLUMN SELECTION
+    # ======================================================
+
+
+    numeric_cols = df.select_dtypes(
+        include="number"
+    ).columns.tolist()
+
+
 
     if len(numeric_cols) == 0:
 
-        st.warning("No numeric columns found.")
+        st.warning(
+            "No numerical columns available for anomaly detection."
+        )
 
         st.stop()
 
+
+
+    st.subheader(
+        "🎯 Select Data Feature"
+    )
+
+
     column = st.selectbox(
-        "Select Numeric Column",
-        numeric_cols,
-        key="anomaly_column"
+
+        "Choose numerical column",
+
+        numeric_cols
+
     )
 
-    anomalies = detect_anomalies(df, column)
+
 
     st.markdown("---")
 
-    col1, col2 = st.columns(2)
 
-    col1.metric(
-        "Total Records",
-        len(df)
+
+    # ======================================================
+    # DATA SUMMARY
+    # ======================================================
+
+
+    st.subheader(
+        "📊 Feature Statistics"
     )
 
-    col2.metric(
-        "Anomalies Found",
-        len(anomalies)
-    )
+
+    col1,col2,col3,col4 = st.columns(4)
+
+
+
+    with col1:
+
+        st.metric(
+            "Total Records",
+            len(df)
+        )
+
+
+
+    with col2:
+
+        st.metric(
+            "Average Value",
+            round(
+                df[column].mean(),
+                2
+            )
+        )
+
+
+
+    with col3:
+
+        st.metric(
+            "Maximum",
+            round(
+                df[column].max(),
+                2
+            )
+        )
+
+
+
+    with col4:
+
+        st.metric(
+            "Minimum",
+            round(
+                df[column].min(),
+                2
+            )
+        )
+
+
 
     st.markdown("---")
 
-    if anomalies.empty:
 
-        st.success("✅ No anomalies detected.")
 
-    else:
+    # ======================================================
+    # DETECTION
+    # ======================================================
 
-        st.error(f"🚨 {len(anomalies)} anomalies detected.")
 
-        st.dataframe(
-            anomalies,
-            use_container_width=True
-        )
+    if st.button(
+        "🚀 Detect Anomalies"
+    ):
 
-        csv = anomalies.to_csv(index=False).encode("utf-8")
 
-        st.download_button(
-            "📥 Download Anomalies",
-            csv,
-            "anomalies.csv",
-            "text/csv"
-        )
+        with st.spinner(
+            "🤖 AI model is scanning your data..."
+        ):
+
+
+            try:
+
+
+                anomalies = detect_anomalies(
+
+                    df,
+
+                    column
+
+                )
+
+
+                st.success(
+                    "✅ Anomaly Detection Completed"
+                )
+
+
+                st.markdown("---")
+
+
+
+                # RESULTS
+
+
+                st.subheader(
+                    "🚨 Detection Results"
+                )
+
+
+                col1,col2 = st.columns(2)
+
+
+
+                with col1:
+
+                    st.metric(
+
+                        "Total Records",
+
+                        len(df)
+
+                    )
+
+
+
+                with col2:
+
+                    st.metric(
+
+                        "Anomalies Found",
+
+                        len(anomalies)
+
+                    )
+
+
+
+                st.markdown("---")
+
+
+
+                if anomalies.empty:
+
+
+                    st.success(
+                        "🎉 No unusual patterns detected."
+                    )
+
+
+
+                else:
+
+
+                    st.error(
+                        f"🚨 {len(anomalies)} abnormal records detected"
+                    )
+
+
+                    st.dataframe(
+
+                        anomalies,
+
+                        use_container_width=True
+
+                    )
+
+
+
+                    st.markdown("---")
+
+
+
+                    st.subheader(
+                        "📈 Anomaly Visualization"
+                    )
+
+
+                    st.line_chart(
+
+                        df[column]
+
+                    )
+
+
+
+                    st.markdown("---")
+
+
+
+                    csv = anomalies.to_csv(
+                        index=False
+                    ).encode(
+                        "utf-8"
+                    )
+
+
+
+                    st.download_button(
+
+                        "📥 Download Anomaly Report",
+
+                        csv,
+
+                        file_name=
+                        "CitySense_anomaly_report.csv",
+
+                        mime=
+                        "text/csv"
+
+                    )
+
+
+
+            except Exception as e:
+
+
+                st.error(
+                    f"Anomaly Detection Error: {e}"
+                )
         # ======================================================
 # DECISION INTELLIGENCE
 # ======================================================
