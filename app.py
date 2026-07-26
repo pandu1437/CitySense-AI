@@ -106,36 +106,134 @@ page = st.sidebar.radio(
 
 if page == "🏠 Home":
 
-    st.title("🌍 CitySense AI")
+    st.markdown("""
+    <style>
 
-    st.subheader("AI-Powered Decision Intelligence Platform")
+    .hero {
+        padding: 50px;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        color: white;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .hero h3 {
+        font-size: 25px;
+        font-weight: 400;
+        color: #cbd5e1;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.05);
+        padding: 25px;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,0.15);
+        text-align: center;
+        height: 160px;
+    }
+
+    .card h3 {
+        color: #38bdf8;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
+
+
+    # Hero Section
+
+    st.markdown("""
+    <div class="hero">
+
+        <h1>🌍 CitySense AI</h1>
+
+        <h3>
+        Transform Raw Data into Intelligent Decisions with AI
+        </h3>
+
+        <p>
+        An AI-powered decision intelligence platform that automatically
+        analyzes datasets, discovers hidden patterns, predicts future trends,
+        and delivers actionable business insights.
+        </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+
+
+    st.markdown("## 🚀 What CitySense AI Can Do")
+
+
+    col1, col2, col3 = st.columns(3)
+
+
+    with col1:
+        st.markdown("""
+        <div class="card">
+        <h3>📊 Smart Analytics</h3>
+        <p>
+        Automatically clean, analyze and visualize your datasets
+        without writing code.
+        </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+    with col2:
+        st.markdown("""
+        <div class="card">
+        <h3>🤖 AI Intelligence</h3>
+        <p>
+        Get Gemini-powered insights and recommendations
+        from your business data.
+        </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+    with col3:
+        st.markdown("""
+        <div class="card">
+        <h3>🔮 Predictive AI</h3>
+        <p>
+        Forecast future trends and detect unusual patterns
+        automatically.
+        </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+
 
     st.markdown("---")
 
-    st.write("""
-Welcome to **CitySense AI**.
 
-This platform allows you to upload **any CSV or Excel dataset**
-and automatically generate:
+    st.markdown("""
+    ## ✨ How It Works
 
-✅ Interactive Dashboard
+    **1️⃣ Upload Your Dataset**  
+    Import CSV or Excel files instantly.
 
-✅ Smart Visualizations
+    **2️⃣ AI Analyzes Your Data**  
+    CitySense AI performs cleaning, exploration, and pattern discovery.
 
-✅ AI Insights using Gemini
+    **3️⃣ Generate Insights**  
+    Receive dashboards, forecasts, anomalies, and AI recommendations.
 
-✅ Forecasting
+    """)
 
-✅ Anomaly Detection
 
-✅ Decision Intelligence
-
-✅ Data Exploration
-
-No coding required. Just upload your dataset and start analyzing.
-""")
-
-    st.info("👈 Use the sidebar to upload your dataset and begin analysis.")
+    st.success(
+        "🚀 Ready to unlock intelligence from your data? "
+        "Use the sidebar to upload your dataset and start your analysis."
+    )
     # ======================================================
 # UPLOAD DATASET
 # ======================================================
