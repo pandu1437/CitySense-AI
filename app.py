@@ -1746,84 +1746,248 @@ elif page == "🚨 Anomaly Detection":
 # DECISION INTELLIGENCE
 # ======================================================
 
+# ======================================================
+# DECISION INTELLIGENCE
+# ======================================================
+
 elif page == "🧠 Decision Intelligence":
 
     st.title("🧠 AI Decision Intelligence")
 
+
     df = st.session_state.df
+
 
     if df is None:
 
-        st.warning("Please upload a dataset first.")
+        st.warning(
+            "⚠️ Please upload a dataset first."
+        )
 
         st.stop()
 
-    report = generate_decision_report(df)
 
-    st.success("Decision Report Generated Successfully")
-    
+
+    st.markdown(
+    """
+    Transform raw analytics into actionable decisions.
+    CitySense AI analyzes your data and generates
+    recommendations, business insights and strategic actions.
+    """
+    )
+
 
     st.markdown("---")
 
-    # Dataset Summary
 
-    st.subheader("📊 Dataset Summary")
 
-    col1, col2, col3 = st.columns(3)
+    # ======================================================
+    # EXECUTIVE SUMMARY
+    # ======================================================
 
-    col1.metric(
-        "Rows",
-        report["Rows"]
+
+    st.subheader(
+        "📊 Executive Data Summary"
     )
 
-    col2.metric(
-        "Columns",
-        report["Columns"]
-    )
 
-    col3.metric(
-        "Missing Values",
-        report["Missing"]
-    )
+    col1,col2,col3,col4 = st.columns(4)
+
+
+
+    with col1:
+
+        st.metric(
+            "Total Records",
+            df.shape[0]
+        )
+
+
+    with col2:
+
+        st.metric(
+            "Data Features",
+            df.shape[1]
+        )
+
+
+    with col3:
+
+        st.metric(
+            "Missing Values",
+            int(df.isnull().sum().sum())
+        )
+
+
+    with col4:
+
+        st.metric(
+            "Duplicate Rows",
+            int(df.duplicated().sum())
+        )
+
+
 
     st.markdown("---")
 
-    # Numeric Columns
 
-    st.subheader("📈 Numeric Column Analysis")
 
-    st.dataframe(
-        report["Statistics"],
-        use_container_width=True
-    )
+    # ======================================================
+    # GENERATE REPORT
+    # ======================================================
 
-    st.markdown("---")
 
-    # Recommendations
+    if st.button(
+        "🚀 Generate AI Decision Report"
+    ):
 
-    st.subheader("💡 AI Recommendations")
 
-    for rec in report["Recommendations"]:
+        with st.spinner(
+            "🤖 AI is generating strategic insights..."
+        ):
 
-        st.success(rec)
 
-    st.markdown("---")
+            try:
 
-    # Download Report
 
-    csv = report["Statistics"].to_csv().encode("utf-8")
+                report = generate_decision_report(df)
 
-    st.download_button(
 
-        "📥 Download Decision Report",
 
-        csv,
+                st.success(
+                    "✅ Decision Report Generated"
+                )
 
-        file_name="decision_report.csv",
 
-        mime="text/csv"
 
-    )
+                st.markdown("---")
+
+
+
+                # ======================================================
+                # STATISTICS
+                # ======================================================
+
+
+                st.subheader(
+                    "📈 Data Intelligence"
+                )
+
+
+                if "Statistics" in report:
+
+
+                    st.dataframe(
+
+                        report["Statistics"],
+
+                        use_container_width=True
+
+                    )
+
+
+
+                st.markdown("---")
+
+
+
+                # ======================================================
+                # RECOMMENDATIONS
+                # ======================================================
+
+
+                st.subheader(
+                    "💡 AI Recommendations"
+                )
+
+
+                if "Recommendations" in report:
+
+
+                    for recommendation in report["Recommendations"]:
+
+
+                        st.success(
+                            recommendation
+                        )
+
+
+
+                st.markdown("---")
+
+
+
+                # ======================================================
+                # BUSINESS ACTIONS
+                # ======================================================
+
+
+                st.subheader(
+                    "🎯 Recommended Actions"
+                )
+
+
+                actions = [
+
+                    "📌 Monitor important performance indicators regularly.",
+
+                    "📌 Investigate unusual patterns detected in data.",
+
+                    "📌 Optimize decisions using predictive insights.",
+
+                    "📌 Use AI-generated trends for future planning."
+
+                ]
+
+
+                for action in actions:
+
+
+                    st.info(
+                        action
+                    )
+
+
+
+                st.markdown("---")
+
+
+
+                # ======================================================
+                # DOWNLOAD REPORT
+                # ======================================================
+
+
+                if "Statistics" in report:
+
+
+                    csv = report["Statistics"].to_csv().encode(
+                        "utf-8"
+                    )
+
+
+                    st.download_button(
+
+                        "📥 Download Decision Report",
+
+                        csv,
+
+                        file_name=
+                        "CitySense_AI_Decision_Report.csv",
+
+                        mime=
+                        "text/csv"
+
+                    )
+
+
+
+            except Exception as e:
+
+
+                st.error(
+                    f"Decision Intelligence Error: {e}"
+                )
     # ======================================================
 # ABOUT
 # ======================================================
