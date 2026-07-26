@@ -112,20 +112,16 @@ div[data-testid="metric-container"] {
 
     border-radius:30px;
 
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
         #0f172a,
         #1d4ed8,
         #2563eb
     );
 
-    color:white;
-
     text-align:center;
 
-    box-shadow:
-    0 15px 40px rgba(0,0,0,0.25);
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
 
     margin-bottom:35px;
 
@@ -140,12 +136,16 @@ div[data-testid="metric-container"] {
 
     color:white !important;
 
+    margin-bottom:20px;
+
 }
 
 
 .hero h3 {
 
     font-size:28px !important;
+
+    font-weight:600;
 
     color:#dbeafe !important;
 
@@ -158,10 +158,9 @@ div[data-testid="metric-container"] {
 
     line-height:1.7;
 
-    color:#e2e8f0 !important;
+    color:white !important;
 
 }
-
 
 
 /* ================================
@@ -294,37 +293,26 @@ if page == "🏠 Home":
 
     # HERO SECTION
 
-    st.markdown("""
-    <div class="hero">
+    st.markdown(
+"""
+<div class="hero">
 
-        <h1>
-        🌍 CitySense AI
-        </h1>
+<h1>🌍 CitySense AI</h1>
 
+<h3>
+Transform Raw Data Into Intelligent Decisions
+</h3>
 
-        <h3>
-        Transform Raw Data Into Intelligent Decisions
-        </h3>
+<p>
+An AI-powered decision intelligence platform that converts
+raw datasets into actionable insights using automated analytics,
+predictive AI, and Google Gemini intelligence.
+</p>
 
-
-        <p>
-        An AI-powered decision intelligence platform that converts
-        raw datasets into actionable insights using automated analytics,
-        predictive AI, and Google Gemini intelligence.
-        </p>
-
-
-    </div>
-
-    """, unsafe_allow_html=True)
-
-
-
-    # METRICS
-
-
-    col1,col2,col3,col4 = st.columns(4)
-
+</div>
+""",
+unsafe_allow_html=True
+)
 
     col1.metric(
         "📊 Analytics",
