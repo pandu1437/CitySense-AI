@@ -18,290 +18,34 @@ st.set_page_config(
     layout="wide"
 )
 # ======================================================
-# CUSTOM CSS
-# ======================================================
-
-# ======================================================
-# CUSTOM CSS
-# ======================================================
-
-st.markdown("""
-<style>
-
-/* Main background */
-
-.main {
-    background-color:#F8FAFC;
-}
-
-
-/* Sidebar */
-
-section[data-testid="stSidebar"] {
-
-    background:linear-gradient(
-        180deg,
-        #0f172a,
-        #1e3a8a
-    );
-
-}
-
-
-/* Sidebar text */
-
-section[data-testid="stSidebar"] * {
-
-    color:white !important;
-
-}
-
-
-/* Global headings */
-
-h1 {
-
-    color:#1E3A8A;
-
-}
-
-h2 {
-
-    color:#2563EB;
-
-}
-
-
-/* Metric cards */
-
-div[data-testid="metric-container"] {
-
-    background:white;
-
-    border-radius:15px;
-
-    padding:18px;
-
-    box-shadow:
-    0 8px 20px rgba(0,0,0,0.08);
-
-}
-
-
-/* Buttons */
-
-.stButton>button {
-
-    background:#2563EB;
-
-    color:white;
-
-    border-radius:10px;
-
-    width:100%;
-
-    font-weight:600;
-
-}
-
-
-/* ================================
-   PREMIUM HOME PAGE COMPONENTS
-================================ */
-
-
-.hero {
-
-    padding:60px 40px;
-
-    border-radius:30px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #0f172a,
-        #1d4ed8,
-        #2563eb
-    );
-
-    color:white;
-
-    text-align:center;
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,0.25);
-
-    margin-bottom:35px;
-
-}
-
-
-.hero h1 {
-
-    font-size:60px !important;
-
-    font-weight:900 !important;
-
-    color:white !important;
-
-}
-
-
-.hero h3 {
-
-    font-size:28px !important;
-
-    font-weight:500 !important;
-
-    color:#dbeafe !important;
-
-}
-
-
-.hero p {
-
-    font-size:18px !important;
-
-    line-height:1.7;
-
-    color:#e2e8f0 !important;
-
-}
-
-
-/* Feature cards */
-
-
-.feature-card {
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    height:190px;
-
-    text-align:center;
-
-    border:1px solid #e2e8f0;
-
-    box-shadow:
-    0 8px 25px rgba(0,0,0,0.08);
-
-}
-
-
-.feature-card h3 {
-
-    color:#2563EB !important;
-
-    font-size:22px !important;
-
-}
-
-
-.feature-card p {
-
-    color:#475569 !important;
-
-    font-size:15px;
-
-}
-
-
-/* Process cards */
-
-
-.step-card {
-
-    background:#f8fafc;
-
-    padding:20px;
-
-    border-radius:15px;
-
-    border-left:
-    5px solid #2563EB;
-
-}
-
-
-</style>
-
-""", unsafe_allow_html=True)
-# ======================================================
-# SESSION STATE
-# ======================================================
-
-if "df" not in st.session_state:
-    st.session_state.df = None
-
-# ======================================================
-# SIDEBAR
-# ======================================================
-
-st.sidebar.title("🌍 CitySense AI")
-
-st.sidebar.caption(
-    "AI-Powered Decision Intelligence Platform"
-)
-
-st.sidebar.markdown("---")
-
-page = st.sidebar.radio(
-    "Navigation",
-    [
-        "🏠 Home",
-        "📂 Upload Dataset",
-        "📊 Dashboard",
-        "🤖 AI Assistant",
-        "📈 Forecast",
-        "🚨 Anomaly Detection",
-        "🧠 Decision Intelligence",
-        "ℹ️ About"
-    ]
-)
-
-# ======================================================
-# HOME
-# ======================================================
-
-# ======================================================
-# HOME
-# ======================================================
-
-# ======================================================
 # HOME
 # ======================================================
 
 if page == "🏠 Home":
 
 
+    # ================================
     # HERO SECTION
+    # ================================
 
     st.markdown("""
-
     <div class="hero">
 
-
-    <h1>
-    🌍 CitySense AI
-    </h1>
-
-
-    <h3>
-    Transform Raw Data Into Intelligent Decisions
-    </h3>
+        <h1>
+        🌍 CitySense AI
+        </h1>
 
 
-    <p>
+        <h3>
+        Transform Raw Data Into Intelligent Decisions
+        </h3>
 
-    An AI-powered decision intelligence platform that converts
-    raw datasets into actionable insights using automated analytics,
-    predictive AI, and Google Gemini intelligence.
 
-    </p>
+        <p>
+        An AI-powered decision intelligence platform that converts
+        raw datasets into actionable insights using automated analytics,
+        predictive AI, and Google Gemini intelligence.
+        </p>
 
 
     </div>
@@ -310,8 +54,9 @@ if page == "🏠 Home":
 
 
 
+    # ================================
     # PRODUCT METRICS
-
+    # ================================
 
     col1,col2,col3,col4 = st.columns(4)
 
@@ -345,6 +90,11 @@ if page == "🏠 Home":
 
 
 
+    # ================================
+    # FEATURES
+    # ================================
+
+
     st.markdown(
         "## 🚀 Powerful AI Capabilities"
     )
@@ -357,77 +107,73 @@ if page == "🏠 Home":
     with col1:
 
         st.markdown("""
-
         <div class="feature-card">
 
         <h3>
         📊 Smart Analytics
         </h3>
 
-
         <p>
         Automatically clean, analyze and visualize
         datasets with interactive dashboards.
         </p>
 
-
         </div>
 
-        """, unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True)
 
 
 
     with col2:
 
         st.markdown("""
-
         <div class="feature-card">
 
         <h3>
         🤖 AI Intelligence
         </h3>
 
-
         <p>
         Generate insights and recommendations
         using Google Gemini AI.
         </p>
 
-
         </div>
 
-        """, unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True)
 
 
 
     with col3:
 
         st.markdown("""
-
         <div class="feature-card">
 
         <h3>
         🔮 Predictive AI
         </h3>
 
-
         <p>
         Forecast future trends and detect
         unusual patterns automatically.
         </p>
 
-
         </div>
 
-        """, unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True)
 
 
 
     st.markdown("---")
 
+
+
+    # ================================
+    # HOW IT WORKS
+    # ================================
 
 
     st.markdown(
@@ -443,242 +189,86 @@ if page == "🏠 Home":
     with col1:
 
         st.markdown("""
-
         <div class="step-card">
+
 
         <h3>
         1️⃣ Upload Dataset
         </h3>
 
+
         <p>
         Import CSV or Excel files instantly.
         </p>
 
+
         </div>
 
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True)
 
 
 
     with col2:
 
         st.markdown("""
-
         <div class="step-card">
+
 
         <h3>
         2️⃣ AI Analysis
         </h3>
+
 
         <p>
         AI cleans, explores and discovers
         hidden patterns.
         </p>
 
+
         </div>
 
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True)
 
 
 
     with col3:
 
         st.markdown("""
-
         <div class="step-card">
+
 
         <h3>
         3️⃣ Intelligent Decisions
         </h3>
+
 
         <p>
         Generate dashboards, forecasts
         and recommendations.
         </p>
 
+
         </div>
 
-        """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True)
 
 
 
     st.markdown("---")
+
+
+
+    # ================================
+    # CALL TO ACTION
+    # ================================
 
 
     st.success(
         "🚀 Ready to unlock intelligence from your data? "
         "Use the sidebar to upload your dataset and start analysis."
-    )
-
-
-    # HERO SECTION
-
-   
-
-
-    # PRODUCT METRICS
-
-    col1, col2, col3, col4 = st.columns(4)
-
-
-    col1.metric(
-        "📊 Analytics",
-        "Automated"
-    )
-
-    col2.metric(
-        "🤖 AI Engine",
-        "Gemini"
-    )
-
-    col3.metric(
-        "📁 Data Support",
-        "CSV + Excel"
-    )
-
-    col4.metric(
-        "⚡ Processing",
-        "Instant"
-    )
-
-
-    st.markdown("---")
-
-
-
-    # FEATURES
-
-    st.markdown(
-        "## 🚀 Powerful AI Capabilities"
-    )
-
-
-    col1, col2, col3 = st.columns(3)
-
-
-
-    with col1:
-
-        st.markdown("""
-        <div class="feature-card">
-
-        <h3>📊 Smart Analytics</h3>
-
-        <p>
-        Automatically clean, analyze and visualize
-        datasets with interactive dashboards.
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-
-    with col2:
-
-        st.markdown("""
-        <div class="feature-card">
-
-        <h3>🤖 AI Insights</h3>
-
-        <p>
-        Ask questions and get intelligent
-        recommendations powered by Gemini AI.
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-
-    with col3:
-
-        st.markdown("""
-        <div class="feature-card">
-
-        <h3>🔮 Predictive Intelligence</h3>
-
-        <p>
-        Forecast trends and detect anomalies
-        using machine learning techniques.
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-
-    st.markdown("---")
-
-
-
-    # HOW IT WORKS
-
-    st.markdown(
-        "## ✨ How CitySense AI Works"
-    )
-
-
-    col1, col2, col3 = st.columns(3)
-
-
-
-    with col1:
-
-        st.markdown("""
-        <div class="step-card">
-
-        <h3>1️⃣ Upload Data</h3>
-
-        <p>
-        Upload any CSV or Excel dataset.
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-
-    with col2:
-
-        st.markdown("""
-        <div class="step-card">
-
-        <h3>2️⃣ AI Analysis</h3>
-
-        <p>
-        Automatic cleaning, exploration,
-        visualization and pattern discovery.
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-
-    with col3:
-
-        st.markdown("""
-        <div class="step-card">
-
-        <h3>3️⃣ Get Intelligence</h3>
-
-        <p>
-        Receive dashboards, forecasts,
-        anomalies and recommendations.
-        </p>
-
-        </div>
-        """, unsafe_allow_html=True)
-
-
-
-    st.markdown("---")
-
-
-    st.success(
-        "🚀 Ready to unlock intelligence from your data? "
-        "Use the sidebar to upload your dataset and begin analysis."
     )
     # ======================================================
 # UPLOAD DATASET
