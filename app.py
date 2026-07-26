@@ -717,7 +717,9 @@ elif page == "📂 Upload Dataset":
 
 elif page == "📊 Dashboard":
 
-    st.title("📊 Intelligent Analytics Dashboard")
+    st.title("📊 AI Analytics Command Center
+
+Transforming raw city data into actionable intelligence")
 
 
     df = st.session_state.df
