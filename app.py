@@ -313,7 +313,7 @@ predictive AI, and Google Gemini intelligence.
 """,
 unsafe_allow_html=True
 )  
-    col1.metric(
+col1.metric(
         "📊 Analytics",
         "Automated"
     )
