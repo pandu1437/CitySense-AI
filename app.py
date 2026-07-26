@@ -1992,91 +1992,287 @@ elif page == "🧠 Decision Intelligence":
 # ABOUT
 # ======================================================
 
+# ======================================================
+# ABOUT
+# ======================================================
+
 elif page == "ℹ️ About":
 
     st.title("🌍 About CitySense AI")
 
-    st.markdown("""
-# 🌍 CitySense AI
 
-### AI-Powered Decision Intelligence Platform
+    st.markdown(
+    """
+    <div class="hero">
 
-CitySense AI is a smart analytics platform that enables users to upload any CSV or Excel dataset and instantly generate interactive dashboards, AI-powered insights, forecasting, anomaly detection, and decision intelligence.
+    <h1>
+    CitySense AI
+    </h1>
 
----
+    <h3>
+    AI-Powered Decision Intelligence Platform
+    </h3>
 
-## 🚀 Features
+    <p>
+    Turning raw data into intelligent decisions using
+    Artificial Intelligence, Machine Learning and Google Gemini.
+    </p>
 
-✅ Upload any CSV or Excel dataset
+    </div>
+    """,
+    unsafe_allow_html=True
+    )
 
-✅ Automatic Data Cleaning
 
-✅ Interactive Dashboard
+    st.markdown("---")
 
-✅ Automatic Charts
 
-✅ AI Assistant (Google Gemini)
+    # ======================================================
+    # PROJECT OVERVIEW
+    # ======================================================
 
-✅ Forecasting
 
-✅ Anomaly Detection
+    st.subheader(
+        "🚀 Project Overview"
+    )
 
-✅ Decision Intelligence
 
-✅ Download Reports
+    st.write(
+    """
+    CitySense AI is an intelligent analytics platform that enables
+    users to upload datasets and instantly generate insights,
+    dashboards, predictions and recommendations.
 
----
+    The platform combines automated data processing,
+    machine learning models and Generative AI to simplify
+    complex data analysis.
+    """
+    )
 
-## 📊 Visualizations
 
-- Histogram
-- Line Chart
-- Scatter Plot
-- Bar Chart
-- Pie Chart
-- Correlation Heatmap
+    st.markdown("---")
 
----
 
-## 🤖 Artificial Intelligence
 
-Google Gemini 2.5 Flash analyzes the uploaded dataset and answers natural language questions.
+    # ======================================================
+    # FEATURES
+    # ======================================================
 
-Example Questions:
 
-- Summarize my dataset.
-- Which category performs best?
-- Detect unusual patterns.
-- Recommend business actions.
-- Explain important trends.
+    st.subheader(
+        "✨ Core Capabilities"
+    )
 
----
 
-## 🛠 Technologies Used
+    col1,col2,col3 = st.columns(3)
 
-- Python
-- Streamlit
-- Pandas
-- Plotly
-- Google Gemini
-- NumPy
-- Machine Learning
 
----
 
-## 👨‍💻 Developed For
+    with col1:
 
-Google Cloud Gen AI Academy Hackathon
+        st.info(
+        """
+        📊 Smart Analytics
 
-CitySense AI demonstrates how AI can simplify analytics and help organizations make data-driven decisions.
-""")
+        • Automated data cleaning
+
+        • Interactive dashboards
+
+        • Data exploration
+
+        """
+        )
+
+
+
+    with col2:
+
+        st.info(
+        """
+        🤖 Generative AI
+
+        • Gemini AI assistant
+
+        • Natural language analysis
+
+        • Intelligent recommendations
+
+        """
+        )
+
+
+
+    with col3:
+
+        st.info(
+        """
+        🔮 Predictive Intelligence
+
+        • Forecasting
+
+        • Trend analysis
+
+        • Anomaly detection
+
+        """
+        )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # TECHNOLOGY STACK
+    # ======================================================
+
+
+    st.subheader(
+        "🛠 Technology Stack"
+    )
+
+
+    tech = pd.DataFrame({
+
+        "Category":[
+
+            "Programming",
+
+            "Analytics",
+
+            "Visualization",
+
+            "AI",
+
+            "Framework"
+
+        ],
+
+        "Technology":[
+
+            "Python",
+
+            "Pandas, NumPy, Scikit-learn",
+
+            "Plotly, Streamlit Charts",
+
+            "Google Gemini AI",
+
+            "Streamlit"
+
+        ]
+
+    })
+
+
+    st.dataframe(
+
+        tech,
+
+        use_container_width=True,
+
+        hide_index=True
+
+    )
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # AI ARCHITECTURE
+    # ======================================================
+
+
+    st.subheader(
+        "🏗 How CitySense AI Works"
+    )
+
+
+    architecture = [
+
+        "1️⃣ User uploads CSV / Excel dataset",
+
+        "2️⃣ Data cleaning and preprocessing",
+
+        "3️⃣ Automated analytics and visualization",
+
+        "4️⃣ Machine learning forecasting",
+
+        "5️⃣ Gemini AI generates insights",
+
+        "6️⃣ Decision recommendations are created"
+
+    ]
+
+
+    for step in architecture:
+
+        st.success(step)
+
+
+
+    st.markdown("---")
+
+
+
+    # ======================================================
+    # DEVELOPER SECTION
+    # ======================================================
+
+
+    st.subheader(
+        "👨‍💻 Built With"
+    )
+
+
+    st.write(
+    """
+    ❤️ Built using Python, Streamlit, Machine Learning
+    and Google Gemini AI.
+
+    Created for demonstrating how Artificial Intelligence
+    can transform traditional analytics into intelligent
+    decision-making systems.
+    """
+    )
 
 # ======================================================
 # FOOTER
 # ======================================================
 
-st.markdown("---")
+st.markdown(
+"""
+<hr>
 
-st.caption(
-    "🌍 CitySense AI | AI-Powered Decision Intelligence Platform | Built with ❤️ using Streamlit, Python & Google Gemini"
+<div style="
+text-align:center;
+padding:20px;
+font-size:15px;
+color:#64748b;
+">
+
+<h3 style="color:#2563EB;">
+🌍 CitySense AI
+</h3>
+
+<p>
+AI-Powered Decision Intelligence Platform
+</p>
+
+<p>
+Built with ❤️ using Python • Streamlit • Google Gemini • Machine Learning
+</p>
+
+<p>
+© 2026 CitySense AI | Turning Data Into Intelligence
+</p>
+
+</div>
+
+""",
+unsafe_allow_html=True
 )
