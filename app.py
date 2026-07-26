@@ -104,50 +104,108 @@ page = st.sidebar.radio(
 # HOME
 # ======================================================
 
+# ======================================================
+# HOME
+# ======================================================
+
 if page == "🏠 Home":
 
     st.markdown("""
     <style>
 
     .hero {
-        padding: 50px;
-        border-radius: 25px;
-        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        padding: 60px 40px;
+        border-radius: 30px;
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1d4ed8,
+            #2563eb
+        );
         color: white;
         text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         margin-bottom: 35px;
     }
 
+
     .hero h1 {
-        font-size: 55px;
-        font-weight: 800;
-        margin-bottom: 10px;
+        font-size: 60px;
+        font-weight: 900;
+        margin-bottom: 15px;
     }
+
 
     .hero h3 {
-        font-size: 25px;
-        font-weight: 400;
-        color: #cbd5e1;
+        font-size: 28px;
+        color: #dbeafe;
+        font-weight: 500;
     }
 
-    .card {
-        background: rgba(255,255,255,0.05);
+
+    .hero p {
+        font-size: 18px;
+        color: #e2e8f0;
+        line-height: 1.7;
+    }
+
+
+    .feature-card {
+
+        background: white;
         padding: 25px;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,0.15);
+
+        border-radius: 20px;
+
+        height: 190px;
+
         text-align: center;
-        height: 160px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
     }
 
-    .card h3 {
-        color: #38bdf8;
+
+    .feature-card h3 {
+
+        color:#2563EB;
+
+        font-size:22px;
+
     }
+
+
+    .feature-card p {
+
+        color:#475569;
+
+        font-size:15px;
+
+    }
+
+
+    .step-card {
+
+        background:#f8fafc;
+
+        padding:20px;
+
+        border-radius:15px;
+
+        border-left:5px solid #2563EB;
+
+    }
+
 
     </style>
     """, unsafe_allow_html=True)
 
 
-    # Hero Section
+
+    # HERO SECTION
 
     st.markdown("""
     <div class="hero">
@@ -155,58 +213,109 @@ if page == "🏠 Home":
         <h1>🌍 CitySense AI</h1>
 
         <h3>
-        Transform Raw Data into Intelligent Decisions with AI
+        Transform Raw Data Into Intelligent Decisions
         </h3>
 
+
         <p>
-        An AI-powered decision intelligence platform that automatically
-        analyzes datasets, discovers hidden patterns, predicts future trends,
-        and delivers actionable business insights.
+        An AI-powered decision intelligence platform that converts
+        raw datasets into actionable insights using automated analytics,
+        predictive AI, and Google Gemini intelligence.
         </p>
 
     </div>
+
     """, unsafe_allow_html=True)
 
 
 
-    st.markdown("## 🚀 What CitySense AI Can Do")
+    # PRODUCT METRICS
+
+    col1, col2, col3, col4 = st.columns(4)
+
+
+    col1.metric(
+        "📊 Analytics",
+        "Automated"
+    )
+
+    col2.metric(
+        "🤖 AI Engine",
+        "Gemini"
+    )
+
+    col3.metric(
+        "📁 Data Support",
+        "CSV + Excel"
+    )
+
+    col4.metric(
+        "⚡ Processing",
+        "Instant"
+    )
+
+
+    st.markdown("---")
+
+
+
+    # FEATURES
+
+    st.markdown(
+        "## 🚀 Powerful AI Capabilities"
+    )
 
 
     col1, col2, col3 = st.columns(3)
 
 
+
     with col1:
+
         st.markdown("""
-        <div class="card">
+        <div class="feature-card">
+
         <h3>📊 Smart Analytics</h3>
+
         <p>
-        Automatically clean, analyze and visualize your datasets
-        without writing code.
+        Automatically clean, analyze and visualize
+        datasets with interactive dashboards.
         </p>
+
         </div>
         """, unsafe_allow_html=True)
+
 
 
     with col2:
+
         st.markdown("""
-        <div class="card">
-        <h3>🤖 AI Intelligence</h3>
+        <div class="feature-card">
+
+        <h3>🤖 AI Insights</h3>
+
         <p>
-        Get Gemini-powered insights and recommendations
-        from your business data.
+        Ask questions and get intelligent
+        recommendations powered by Gemini AI.
         </p>
+
         </div>
         """, unsafe_allow_html=True)
 
 
+
     with col3:
+
         st.markdown("""
-        <div class="card">
-        <h3>🔮 Predictive AI</h3>
+        <div class="feature-card">
+
+        <h3>🔮 Predictive Intelligence</h3>
+
         <p>
-        Forecast future trends and detect unusual patterns
-        automatically.
+        Forecast trends and detect anomalies
+        using machine learning techniques.
         </p>
+
         </div>
         """, unsafe_allow_html=True)
 
@@ -215,24 +324,74 @@ if page == "🏠 Home":
     st.markdown("---")
 
 
-    st.markdown("""
-    ## ✨ How It Works
 
-    **1️⃣ Upload Your Dataset**  
-    Import CSV or Excel files instantly.
+    # HOW IT WORKS
 
-    **2️⃣ AI Analyzes Your Data**  
-    CitySense AI performs cleaning, exploration, and pattern discovery.
+    st.markdown(
+        "## ✨ How CitySense AI Works"
+    )
 
-    **3️⃣ Generate Insights**  
-    Receive dashboards, forecasts, anomalies, and AI recommendations.
 
-    """)
+    col1, col2, col3 = st.columns(3)
+
+
+
+    with col1:
+
+        st.markdown("""
+        <div class="step-card">
+
+        <h3>1️⃣ Upload Data</h3>
+
+        <p>
+        Upload any CSV or Excel dataset.
+        </p>
+
+        </div>
+        """, unsafe_allow_html=True)
+
+
+
+    with col2:
+
+        st.markdown("""
+        <div class="step-card">
+
+        <h3>2️⃣ AI Analysis</h3>
+
+        <p>
+        Automatic cleaning, exploration,
+        visualization and pattern discovery.
+        </p>
+
+        </div>
+        """, unsafe_allow_html=True)
+
+
+
+    with col3:
+
+        st.markdown("""
+        <div class="step-card">
+
+        <h3>3️⃣ Get Intelligence</h3>
+
+        <p>
+        Receive dashboards, forecasts,
+        anomalies and recommendations.
+        </p>
+
+        </div>
+        """, unsafe_allow_html=True)
+
+
+
+    st.markdown("---")
 
 
     st.success(
         "🚀 Ready to unlock intelligence from your data? "
-        "Use the sidebar to upload your dataset and start your analysis."
+        "Use the sidebar to upload your dataset and begin analysis."
     )
     # ======================================================
 # UPLOAD DATASET
