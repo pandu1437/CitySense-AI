@@ -292,8 +292,7 @@ if page == "🏠 Home":
 
 
     # HERO SECTION
-     
-     st.markdown(
+ st.markdown(
 """
 <div class="hero">
 
@@ -313,6 +312,8 @@ predictive AI, and Google Gemini intelligence.
 """,
 unsafe_allow_html=True
 )  
+
+col1,col2,col3,col4 = st.columns(4)
 col1.metric(
         "📊 Analytics",
         "Automated"
